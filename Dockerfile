@@ -31,7 +31,7 @@ RUN apk update && apk add --no-cache tzdata ca-certificates bash && \
     apk del tzdata && \
     rm -rf /var/cache/apk/*
 
-ENV TZ=Europe/Moscow
+ENV TZ=/etc/localtime
 
 WORKDIR /app
 
