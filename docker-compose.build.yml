@@ -1,0 +1,30 @@
+#version: '3.9'
+services:
+  domofonapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_DIR=domofon-api
+    container_name: domofon-api
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./conf.yml:/app/conf.yml
+    networks:
+      - domofon
+  smschecker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_DIR=sms-checker
+    container_name: sms-checker
+    volumes:
+      - ./conf.yml:/app/conf.yml
+    networks:
+      - domofon
+
+networks:
+  domofon:
+    driver: bridge
