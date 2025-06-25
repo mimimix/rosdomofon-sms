@@ -87,13 +87,13 @@ func (p *SMSPoller) poll(event NewSMSEvent) {
 				}
 			}()
 
-			fmt.Printf("New SMS %v\n", message)
-
 			date, err := time.Parse("2006-01-02 15:04:05", message.Date)
 			if err != nil {
 				fmt.Println(err)
 				return
 			}
+
+			fmt.Printf("New SMS %v (%s | s since %f)\n", message, date.Format(time.RFC850), time.Since(date).Seconds())
 
 			if time.Since(date).Seconds() > float64(p.aliveSmsTime) {
 				fmt.Printf("SMS %d is too old\n", message.Index)

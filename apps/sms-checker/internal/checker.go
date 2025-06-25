@@ -13,7 +13,7 @@ import (
 
 func Start(poller *smsPoller.SMSPoller, config *config.Config) {
 	poller.Start(func(sms smsPoller.SMS) {
-		//fmt.Println("NewSMS", sms)
+		fmt.Println("NewSMS FOR open", sms)
 
 		if !strings.Contains(sms.Content, "domofon") {
 			fmt.Println("Not domofon text")
