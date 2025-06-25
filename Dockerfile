@@ -25,7 +25,13 @@ RUN go build -o /opt/bin/application ./cmd/main.go
 # Prepare executor image.
 FROM alpine:3.21 AS runner
 
-RUN apk update && apk add ca-certificates bash && rm -rf /var/cache/apk/*
+RUN apk update && apk add --no-cache tzdata ca-certificates bash && \
+    cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime && \
+    echo "Europe/Moscow" > /etc/timezone && \
+    apk del tzdata && \
+    rm -rf /var/cache/apk/*
+
+ENV TZ=Europe/Moscow
 
 WORKDIR /app
 
