@@ -23,7 +23,7 @@ func (h *Route) open(c *gin.Context) {
 	}
 
 	if req.Code != h.config.SecretKey {
-		fmt.Printf("code: %s, need: %s", req.Code, h.config.SecretKey)
+		fmt.Printf("code: %s, need: %s\n", req.Code, h.config.SecretKey)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "wrong code"})
 		return
 	}
@@ -37,7 +37,7 @@ func (h *Route) open(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "internal server error on create key"})
 		return
 	}
-	fmt.Printf("key: %s", key)
+	fmt.Printf("key: %s\n", key)
 
 	err = h.rosdomofon.ActivateKey(key)
 	if err != nil {
