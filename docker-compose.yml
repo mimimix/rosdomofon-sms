@@ -9,6 +9,7 @@ services:
       - ./conf.yml:/app/conf.yml
     networks:
       - domofon
+    restart: unless-stopped
   smschecker:
     image: ghcr.io/mimimix/rosdomofon-sms/sms-checker:latest
     container_name: sms-checker
@@ -16,6 +17,7 @@ services:
       - ./conf.yml:/app/conf.yml
     networks:
       - domofon
+    restart: unless-stopped
 
 networks:
   domofon:
