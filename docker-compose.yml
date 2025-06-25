@@ -1,0 +1,22 @@
+#version: '3.9'
+services:
+  domofonapi:
+    image: ghcr.io/mimimix/domofon-api:latest
+    container_name: domofon-api
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./conf.yml:/app/conf.yml
+    networks:
+      - domofon
+  smschecker:
+    image: ghcr.io/mimimix/sms-checker:latest
+    container_name: sms-checker
+    volumes:
+      - ./conf.yml:/app/conf.yml
+    networks:
+      - domofon
+
+networks:
+  domofon:
+    driver: bridge

@@ -14,7 +14,7 @@ env:
 
 jobs:
   build-and-push:
-    name: Build and push Docker images
+    name: Build and push
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -60,5 +60,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.app }}-${{ github.sha }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.app }}-latest
+            ${{ env.REGISTRY }}/${{ matrix.app }}:${{ github.sha }}
+            ${{ env.REGISTRY }}/${{ matrix.app }}:latest
