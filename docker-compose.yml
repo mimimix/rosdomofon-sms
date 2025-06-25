@@ -1,7 +1,7 @@
 #version: '3.9'
 services:
   domofonapi:
-    image: ghcr.io/mimimix/domofon-api:latest
+    image: ghcr.io/mimimix/rosdomofon-sms/domofon-api:latest
     container_name: domofon-api
     ports:
       - "8080:8080"
@@ -10,7 +10,7 @@ services:
     networks:
       - domofon
   smschecker:
-    image: ghcr.io/mimimix/sms-checker:latest
+    image: ghcr.io/mimimix/rosdomofon-sms/sms-checker:latest
     container_name: sms-checker
     volumes:
       - ./conf.yml:/app/conf.yml
